@@ -39,8 +39,8 @@ const Navbar = () => {
   return (
     <div id="navbar">
       <div className="max-w-screen-xl mx-auto flex flex-row justify-between">
-        <div>
-          <img className="mx-auto pt-[21px] pl-6" src="" />
+        <div className="text-white">
+          <img className="mx-auto pt-[21px]  pl-6" src="" />
           DASHBOARD
         </div>
         <div className="text-white flex flex-row pr-6 rightNav">

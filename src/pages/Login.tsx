@@ -7,15 +7,8 @@ import { useRouter } from "next/router";
 const Index = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  //   const [rememberMe, setRememberMe] = useState<boolean>(false);
 
   const base_url = process.env.NEXT_PUBLIC_API_URL;
-
-  //   const handleRemember = () => {
-  //     setRememberMe(!rememberMe);
-  //   };
-
-  //   console.log(rememberMe);
   const router = useRouter();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -29,9 +22,6 @@ const Index = () => {
         console.log(res);
         console.log(res.data.data.access_token);
         Cookies.set("access_token", res.data.data.access_token);
-        // if (rememberMe) {
-        //   localStorage.setItem("access_token", res.data.data.access_token);
-        // }
         router.push("/Dashboard");
       })
       .catch((error: any) => {
@@ -45,10 +35,12 @@ const Index = () => {
         {/* <img className="mx-auto " src="" alt="Logo" /> */}
       </div>
       <div className="loginForm">
-        <div className="welcome pt-8">Login</div>
+        <div className="welcome pt-8 text-center font-black text-[#34174a] text-3xl">
+          Login
+        </div>
         <form className="pt-12 pl-12 text-black">
           <input
-            className="email "
+            className="email  text-sm"
             type="email"
             name="email"
             placeholder="Email"
@@ -56,23 +48,13 @@ const Index = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            className="pass"
+            className="pass text-sm"
             type="password"
             name="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {/* <div className="py-6 remember flex gap-2">
-            <input
-              type="checkbox"
-              name="remember"
-              value="remember"
-              checked={rememberMe}
-              onChange={handleRemember}
-            />
-            <div>Remember Me</div>
-          </div> */}
           <button
             className={`btn mt-12 ${
               !email || !password
