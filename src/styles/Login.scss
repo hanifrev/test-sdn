@@ -1,0 +1,96 @@
+#login {
+  background: #000626;
+  .loginForm {
+    position: absolute;
+    width: 448px;
+    height: 340px;
+    left: calc(50% - 448px / 2);
+    // top: calc(50% - 364px / 2 - 140px);
+    background: #ffffff;
+    border-radius: 12px;
+    .welcome {
+      font-family: Givonic;
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 40px;
+      letter-spacing: 0em;
+      text-align: center;
+      color: #34174a;
+    }
+    form {
+      input {
+        background: #ffffff;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+        border-radius: 6px 6px 0px 0px;
+        width: 352px;
+        height: 42px;
+        padding: 9px 13px;
+        border: 1px solid rgb(0 0 0 / 22%);
+      }
+      .email {
+        border-radius: 6px 6px 0px 0px;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
+      .pass {
+        border-radius: 0px;
+        margin-top: -1px;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
+      .otp {
+        border-radius: 0px 0px 6px 6px;
+        margin-top: -1px;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
+      .remember {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+        input {
+          width: 16px;
+          height: 16px;
+          margin-top: 2px;
+        }
+      }
+      .btn {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0em;
+        // text-align: center;
+        color: white;
+        // display: flex;
+        align-items: center;
+        width: 352px;
+        height: 44px;
+        // background: #34174a;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+        border-radius: 6px;
+        p {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+      .btn::before {
+        content: url(../../public/lock.svg);
+        transform: translateX(15px);
+      }
+    }
+  }
+}
