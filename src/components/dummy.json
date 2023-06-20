@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "648c4a388f6c1f606c750c28",
+    "name": "Daisy Sawayn",
+    "email": "Tristin_Deckow12@yahoo.com",
+    "emailVerifiedAt": null,
+    "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/572.jpg",
+    "bio": "exercitationem ad omnis iure animi fuga voluptas doloribus repellat recusandae",
+    "role": {
+      "_id": "648c4a358f6c1f606c750c1d",
+      "name": "user",
+      "permissions": [],
+      "__v": 0
+    },
+    "__v": 0
+  },
+  {
+    "_id": "648c4a388f6c1f606c750c2f",
+    "name": "Mrs. Elsie Kautzer",
+    "email": "Raymundo_Turner91@yahoo.com",
+    "emailVerifiedAt": null,
+    "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/367.jpg",
+    "bio": "vitae accusamus ullam repudiandae dolores possimus magni quae iste nobis",
+    "role": {
+      "_id": "648c4a358f6c1f606c750c1d",
+      "name": "user",
+      "permissions": [],
+      "__v": 0
+    },
+    "__v": 0
+  },
+  {
+    "_id": "648c4a388f6c1f606c750c39",
+    "name": "Essie Cassin",
+    "email": "Vivienne4@yahoo.com",
+    "emailVerifiedAt": null,
+    "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/518.jpg",
+    "bio": "ratione minima quos recusandae doloremque earum optio architecto iusto quasi",
+    "role": {
+      "_id": "648c4a358f6c1f606c750c1d",
+      "name": "user",
+      "permissions": [],
+      "__v": 0
+    },
+    "__v": 0
+  },
+  {
+    "_id": "648c4a388f6c1f606c750c4a",
+    "name": "Gayle Wolf",
+    "email": "Meagan_Barton@hotmail.com",
+    "emailVerifiedAt": null,
+    "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/756.jpg",
+    "bio": "repellat repellat laboriosam rem ab voluptatem architecto assumenda quam dicta",
+    "role": {
+      "_id": "648c4a358f6c1f606c750c1d",
+      "name": "user",
+      "permissions": [],
+      "__v": 0
+    },
+    "__v": 0
+  }
+]
