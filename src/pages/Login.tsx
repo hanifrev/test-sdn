@@ -3,6 +3,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { name, email } from "../utils/userInfo";
 
 const Index = () => {
   const [email, setEmail] = useState<string>("");
@@ -10,6 +12,7 @@ const Index = () => {
 
   const base_url = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +24,7 @@ const Index = () => {
       .then((res) => {
         console.log(res);
         console.log(res.data.data.access_token);
+        dispatch(name(res.data.data.name));
         Cookies.set("access_token", res.data.data.access_token);
         router.push("/Dashboard");
       })

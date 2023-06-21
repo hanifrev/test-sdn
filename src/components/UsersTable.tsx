@@ -7,13 +7,19 @@ import {
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import Cookies from "js-cookie";
 import EditModal from "./EditModal";
+import Toast from "./Toast";
+import AddModal from "./AddModal";
 
 const UsersTable = () => {
+  const [modal, setModal] = useState<boolean>(false);
   const [editModal, setEditModal] = useState<boolean>(false);
   const [idEdit, setIdEdit] = useState<string>();
   const [toast, setToast] = useState<boolean>(false);
+  const { name, email } = useSelector((state: RootState) => state.userInfo);
 
   function sliceString(str: string, maxLength: number): string {
     if (str.length <= maxLength) {
@@ -34,12 +40,12 @@ const UsersTable = () => {
   const thedata = getData.data && getData.data.data.docs;
   const data = thedata && [...thedata].reverse();
 
-  useEffect(() => {
-    if (data && data == null) {
-      Cookies.remove("access_token");
-      router.push("/Login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (getData.error && getData.error.status == 401) {
+  //     Cookies.remove("access_token");
+  //     router.push("/Login");
+  //   }
+  // }, []);
 
   const [deleteUsers, { isLoading, isSuccess, isError }] =
     useDeleteUsersMutation();
@@ -55,6 +61,18 @@ const UsersTable = () => {
       };
     }
   }, [toast]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        isSuccess;
+      }, 2000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [isSuccess]);
 
   const handleDelete = (e: any, id: string) => {
     e.preventDefault();
@@ -84,34 +102,22 @@ const UsersTable = () => {
 
   return (
     <div id="users-table">
-      {toast && (
-        <div
-          className="alert alert-success absolute max-w-[600px] z-30"
-          style={{ left: "calc(50% - 600px / 2)" }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="stroke-current shrink-0 h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <span>User updated!</span>
-        </div>
-      )}
-      <div className="flex justify-end w-[864px] mx-auto py-2">
+      {toast && <Toast message="updated!" />}
+      {isSuccess && <Toast message="deleted!" />}
+      <div className="flex justify-between w-[864px] mx-auto py-2">
+        <div>Welcome {name}</div>
         <button
           className="w-24 text-sm p-1 rounded-md text-white ml-6 info bg-green-500 hover:bg-green-400"
-          // onClick={handleSignout}
+          onClick={() => setModal(true)}
         >
           ADD USER
         </button>
+        {modal && (
+          <AddModal
+            toastSuccess={() => setToast(true)}
+            closeModal={() => setModal(false)}
+          />
+        )}
       </div>
 
       <div className="the-list flex justify-center">

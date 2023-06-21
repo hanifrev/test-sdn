@@ -1,47 +1,28 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import {
-  useGetOneUsersQuery,
-  useUpdateUsersMutation,
-} from "@/services/apiSlice";
+import { useAddUsersMutation } from "@/services/apiSlice";
 
-const EditModal = ({
+const AddModal = ({
   closeModal,
   toastSuccess,
-  idParams,
 }: {
   closeModal: any;
   toastSuccess: any;
-  idParams: any;
 }) => {
-  const [updateUsers, { isLoading, isSuccess, isError }] =
-    useUpdateUsersMutation();
+  const [addUsers, { isLoading, isSuccess, isError }] = useAddUsersMutation();
 
   const [id, setId] = useState<string>("");
-  const [name, setName] = useState<string>("Loading...");
-  const [email, setEmail] = useState<string>("Loading...");
-  const [roleId, setRoleId] = useState<string>("Loading...");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [roleId, setRoleId] = useState<string>("");
 
-  const { data: oneData, refetch } = useGetOneUsersQuery(idParams);
-  console.log(oneData && oneData);
-
-  useEffect(() => {
-    if (oneData) {
-      setId(oneData.data._id);
-      setName(oneData.data.name);
-      setEmail(oneData.data.email);
-      setRoleId(oneData.data.role._id);
-    }
-  }, [oneData, idParams]);
-
-  console.log(id);
-
-  useEffect(() => {
-    refetch();
-  }, [idParams]);
+  const handleAdd = (e: any) => {
+    e.preventDefault();
+    addUsers({ name, email, roleId });
+    e.target.reset();
+  };
 
   const modalRef = useRef<HTMLInputElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -58,12 +39,6 @@ const EditModal = ({
     };
   }, [closeModal]);
 
-  const handleUpdate = (e: any) => {
-    e.preventDefault();
-    updateUsers({ id, name, email, roleId });
-    e.target.reset();
-  };
-
   {
     isSuccess &&
       (() => {
@@ -79,16 +54,17 @@ const EditModal = ({
           <span className="loading loading-bars loading-lg"></span>
         </div>
       ) : (
-        <form onSubmit={(e) => handleUpdate(e)}>
+        <form onSubmit={(e) => handleAdd(e)}>
           <div className="max-w-xs m-auto">
-            <h3 className="font-bold text-center py-3">EDIT USER</h3>
+            <h3 className="font-bold text-center py-3">ADD USER</h3>
             <label className="label">
               <span className="label-text">Name</span>
             </label>
             <input
               type="text"
               id="title"
-              value={name}
+              //   value={name}
+              placeholder="Type name here..."
               onChange={(e) => setName(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
               // ref={inputRef}
@@ -99,7 +75,8 @@ const EditModal = ({
             <input
               type="email"
               id="description"
-              value={email}
+              placeholder="Type email here..."
+              //   value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
             />
@@ -108,7 +85,7 @@ const EditModal = ({
             </label>
             <select
               className="select select-primary w-full max-w-xs"
-              value={roleId}
+              //   value={roleId}
               onChange={(e) => setRoleId(e.target.value)}
             >
               <option disabled selected>
@@ -132,7 +109,7 @@ const EditModal = ({
               className="btn btn-primary mt-8 px-16 w-full "
               type="submit"
             >
-              EDIT
+              ADD USER
             </button>
           </div>
         </form>
@@ -144,4 +121,4 @@ const EditModal = ({
   );
 };
 
-export default EditModal;
+export default AddModal;

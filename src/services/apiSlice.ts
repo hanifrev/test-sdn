@@ -30,7 +30,6 @@ export const apiUsers = createApi({
       }
     },
   }),
-
   tagTypes: ["crud"],
   endpoints: (builder) => ({
     refreshToken: builder.mutation({
@@ -40,7 +39,7 @@ export const apiUsers = createApi({
       }),
     }),
     getAllUsers: builder.query<TheUsers[], void>({
-      query: () => "users",
+      query: () => "users?limit=50",
       providesTags: ["crud"],
     }),
     getOneUsers: builder.query({
@@ -73,7 +72,18 @@ export const apiUsers = createApi({
       invalidatesTags: ["crud"],
     }),
   }),
-});
+  // @ts-ignore
+  // onError: (error, { dispatch }) => {
+  //   console.log(error);
+
+  //   if (error.status === 401) {
+  //     // Handle unauthorized error (e.g., redirect to login page)
+  //     // dispatch(logoutAction());
+  //     // You can dispatch any action or perform any logic here
+  //     console.log("iki error 401");
+  //   }
+  // },
+}) as any;
 
 // apiUsers.middleware.arguments(async (ctx: any, next: any) => {
 //   await next();
