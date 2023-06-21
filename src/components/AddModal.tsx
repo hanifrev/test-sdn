@@ -66,7 +66,7 @@ const AddModal = ({
             <input
               type="text"
               id="name"
-              //   value={name}
+              required
               placeholder="Type name here..."
               onChange={(e) => setName(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
@@ -79,7 +79,7 @@ const AddModal = ({
               type="email"
               id="email"
               placeholder="Type email here..."
-              //   value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
             />
@@ -89,7 +89,8 @@ const AddModal = ({
             <input
               type="password"
               id="password"
-              //   value={name}
+              required
+              minLength={8}
               placeholder="Type password here..."
               onChange={(e) => setPassword(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
@@ -101,7 +102,7 @@ const AddModal = ({
             <input
               type="text"
               id="bio"
-              //   value={name}
+              required
               placeholder="Type your bio here..."
               onChange={(e) => setBio(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
@@ -111,9 +112,9 @@ const AddModal = ({
               <span className="label-text">Avatar</span>
             </label>
             <input
-              type="text"
+              type="url"
               id="avatar"
-              //   value={name}
+              required
               placeholder="Paste image URL here..."
               onChange={(e) => setAvatar(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
@@ -125,11 +126,11 @@ const AddModal = ({
             </label>
             <select
               className="select select-primary w-full max-w-xs"
-              //   value={roleId}
+              required
               onChange={(e) => setRoleId(e.target.value)}
             >
               <option disabled selected>
-                Select Rolo Here
+                Select Role Here
               </option>
               <option
                 value="648c4a358f6c1f606c750c1c"

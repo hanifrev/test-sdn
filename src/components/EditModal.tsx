@@ -20,21 +20,26 @@ const EditModal = ({
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("Loading...");
   const [email, setEmail] = useState<string>("Loading...");
+  // const [password, setPassword] = useState<string>("Loading...");
+  const [bio, setBio] = useState<string>("Loading...");
+  const [avatar, setAvatar] = useState<string>("Loading...");
   const [roleId, setRoleId] = useState<string>("Loading...");
 
   const { data: oneData, refetch } = useGetOneUsersQuery(idParams);
-  console.log(oneData && oneData);
+  // console.log(oneData && oneData);
 
   useEffect(() => {
     if (oneData) {
       setId(oneData.data._id);
       setName(oneData.data.name);
       setEmail(oneData.data.email);
+      setBio(oneData.data.bio);
+      setAvatar(oneData.data.avatar);
       setRoleId(oneData.data.role._id);
     }
   }, [oneData, idParams]);
 
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     refetch();
@@ -60,7 +65,7 @@ const EditModal = ({
 
   const handleUpdate = (e: any) => {
     e.preventDefault();
-    updateUsers({ id, name, email, roleId });
+    updateUsers({ id, name, email, bio, avatar, roleId });
     e.target.reset();
   };
 
@@ -102,6 +107,28 @@ const EditModal = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
+            />
+            <label className="label">
+              <span className="label-text">Bio</span>
+            </label>
+            <input
+              type="text"
+              id="bio"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              className="input input-bordered input-primary w-full max-w-xs"
+              // ref={inputRef}
+            />
+            <label className="label">
+              <span className="label-text">Avatar</span>
+            </label>
+            <input
+              type="url"
+              id="avatar"
+              value={avatar}
+              onChange={(e) => setAvatar(e.target.value)}
+              className="input input-bordered input-primary w-full max-w-xs"
+              // ref={inputRef}
             />
             <label className="label">
               <span className="label-text">Select Role</span>

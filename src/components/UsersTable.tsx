@@ -40,6 +40,8 @@ const UsersTable = () => {
   const thedata = getData.data && getData.data.data.docs;
   const data = thedata && [...thedata].reverse();
 
+  const username = Cookies.get("username");
+
   // useEffect(() => {
   //   if (getData.error && getData.error.status == 401) {
   //     Cookies.remove("access_token");
@@ -106,8 +108,8 @@ const UsersTable = () => {
       {toast && <Toast message="updated!" />}
       {toastAdd && <Toast message="added!" />}
       {/* {isSuccess && <Toast message="deleted!" />} */}
-      <div className="flex justify-between w-[864px] mx-auto py-2">
-        <div>Welcome {name}</div>
+      <div className="flex justify-between w-[1077px] mx-auto py-2">
+        <div>Welcome {name ? name : username}</div>
         <button
           className="w-24 text-sm p-1 rounded-md text-white ml-6 info bg-green-500 hover:bg-green-400"
           onClick={() => setModal(true)}
@@ -125,10 +127,11 @@ const UsersTable = () => {
       <div className="the-list flex justify-center">
         <table rules="all">
           <tr className="flex flex-row items-center text-sm table-head">
-            {/* <th className="w-[60px] text-left pl-4">AVA</th> */}
-            <th className="w-[142px] text-left pl-4">ID</th>
-            <th className="w-[280px] text-left pl-4">EMAIL</th>
+            <th className="w-[50px] text-left pl-2">AVA</th>
+            <th className="w-[115px] text-left pl-4">ID</th>
+            <th className="w-[260px] text-left pl-4">EMAIL</th>
             <th className="w-[210px] text-left pl-4">NAME</th>
+            <th className="w-[210px] text-left pl-4">BIO</th>
             <th className="w-[100px] text-left pl-4">ROLE</th>
             <th className="w-[130px] text-left justify-center">Action</th>
           </tr>
@@ -139,18 +142,21 @@ const UsersTable = () => {
                 return (
                   <>
                     <tr className="flex flex-row items-center text-sm table-head">
-                      {/* <td className="w-[60px] text-left pl-4">
+                      <td className="w-[50px] text-left ">
                         {x.avatar ? (
-                          <img className="w-12" src={x.avatar} />
+                          <img className="w-12 rounded-[50%]" src={x.avatar} />
                         ) : (
                           "No image"
                         )}
-                      </td> */}
-                      <td className="w-[142px] text-left pl-4 publicAdd">
+                      </td>
+                      <td className="w-[115px] text-left pl-4 publicAdd">
                         {sliceString(x._id, 12)}
                       </td>
-                      <td className="w-[280px] text-left pl-4">{x.email}</td>
+                      <td className="w-[260px] text-left pl-4">{x.email}</td>
                       <td className="w-[210px] text-left pl-4">{x.name}</td>
+                      <td className="w-[210px] text-left pl-4 flex-wrap">
+                        {`${x.bio ? x.bio.slice(0, 40) : ""}`}
+                      </td>
                       <td className="w-[100px] text-left pl-4">
                         {x.role.name}
                       </td>

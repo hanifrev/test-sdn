@@ -11,6 +11,7 @@ const Navbar = () => {
   const signOut = () => {
     setTimeout(() => {
       Cookies.remove("access_token");
+      Cookies.remove("username");
       localStorage.removeItem("access_token");
       router.push("/").then(() => router.reload());
     }, 1000);

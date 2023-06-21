@@ -22,9 +22,10 @@ const Index = () => {
         password: password,
       })
       .then((res) => {
-        console.log(res);
-        console.log(res.data.data.access_token);
+        // console.log(res);
+        // console.log(res.data.data.access_token);
         dispatch(name(res.data.data.name));
+        Cookies.set("username", res.data.data.name);
         Cookies.set("access_token", res.data.data.access_token);
         router.push("/Dashboard");
       })
