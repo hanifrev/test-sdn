@@ -39,7 +39,7 @@ export const apiUsers = createApi({
       }),
     }),
     getAllUsers: builder.query<TheUsers[], void>({
-      query: () => "users?limit=50",
+      query: (page: any = 1) => `users?page=${page}&limit=15`,
       providesTags: ["crud"],
     }),
     getOneUsers: builder.query({

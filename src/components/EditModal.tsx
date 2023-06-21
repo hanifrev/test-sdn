@@ -139,7 +139,7 @@ const EditModal = ({
               onChange={(e) => setRoleId(e.target.value)}
             >
               <option disabled selected>
-                Select Rolo Here
+                Select Role Here
               </option>
               <option
                 value="648c4a358f6c1f606c750c1c"

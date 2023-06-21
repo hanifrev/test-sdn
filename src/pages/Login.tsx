@@ -30,7 +30,8 @@ const Index = () => {
         router.push("/Dashboard");
       })
       .catch((error: any) => {
-        console.error("error >>>", error);
+        console.error("error >>>", error.response.data.message);
+        alert(error.response.data.message);
       });
   };
 
