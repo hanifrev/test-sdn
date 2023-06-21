@@ -14,11 +14,14 @@ const AddModal = ({
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [bio, setBio] = useState<string>("");
+  const [avatar, setAvatar] = useState<string>("");
   const [roleId, setRoleId] = useState<string>("");
 
   const handleAdd = (e: any) => {
     e.preventDefault();
-    addUsers({ name, email, roleId });
+    addUsers({ name, email, password, bio, avatar, roleId });
     e.target.reset();
   };
 
@@ -62,7 +65,7 @@ const AddModal = ({
             </label>
             <input
               type="text"
-              id="title"
+              id="name"
               //   value={name}
               placeholder="Type name here..."
               onChange={(e) => setName(e.target.value)}
@@ -74,12 +77,49 @@ const AddModal = ({
             </label>
             <input
               type="email"
-              id="description"
+              id="email"
               placeholder="Type email here..."
               //   value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
             />
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              id="password"
+              //   value={name}
+              placeholder="Type password here..."
+              onChange={(e) => setPassword(e.target.value)}
+              className="input input-bordered input-primary w-full max-w-xs"
+              // ref={inputRef}
+            />
+            <label className="label">
+              <span className="label-text">Bio</span>
+            </label>
+            <input
+              type="text"
+              id="bio"
+              //   value={name}
+              placeholder="Type your bio here..."
+              onChange={(e) => setBio(e.target.value)}
+              className="input input-bordered input-primary w-full max-w-xs"
+              // ref={inputRef}
+            />
+            <label className="label">
+              <span className="label-text">Avatar</span>
+            </label>
+            <input
+              type="text"
+              id="avatar"
+              //   value={name}
+              placeholder="Paste image URL here..."
+              onChange={(e) => setAvatar(e.target.value)}
+              className="input input-bordered input-primary w-full max-w-xs"
+              // ref={inputRef}
+            />
+
             <label className="label">
               <span className="label-text">Select Role</span>
             </label>

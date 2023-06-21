@@ -19,6 +19,7 @@ const UsersTable = () => {
   const [editModal, setEditModal] = useState<boolean>(false);
   const [idEdit, setIdEdit] = useState<string>();
   const [toast, setToast] = useState<boolean>(false);
+  const [toastAdd, setToastAdd] = useState<boolean>(false);
   const { name, email } = useSelector((state: RootState) => state.userInfo);
 
   function sliceString(str: string, maxLength: number): string {
@@ -35,7 +36,6 @@ const UsersTable = () => {
 
   const router = useRouter();
 
-  const dispath = useDispatch();
   const getData: any = useGetAllUsersQuery();
   const thedata = getData.data && getData.data.data.docs;
   const data = thedata && [...thedata].reverse();
@@ -51,28 +51,29 @@ const UsersTable = () => {
     useDeleteUsersMutation();
 
   useEffect(() => {
-    if (toast) {
+    if (toast || toastAdd) {
       const timer = setTimeout(() => {
         setToast(false);
+        setToastAdd(false);
       }, 2000);
 
       return () => {
         clearTimeout(timer);
       };
     }
-  }, [toast]);
+  }, [toast, toastAdd]);
 
-  useEffect(() => {
-    if (isSuccess) {
-      const timer = setTimeout(() => {
-        isSuccess;
-      }, 2000);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     const timer = setTimeout(() => {
+  //       isSuccess;
+  //     }, 2000);
 
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [isSuccess]);
+  //     return () => {
+  //       clearTimeout(timer);
+  //     };
+  //   }
+  // }, [isSuccess]);
 
   const handleDelete = (e: any, id: string) => {
     e.preventDefault();
@@ -103,7 +104,8 @@ const UsersTable = () => {
   return (
     <div id="users-table">
       {toast && <Toast message="updated!" />}
-      {isSuccess && <Toast message="deleted!" />}
+      {toastAdd && <Toast message="added!" />}
+      {/* {isSuccess && <Toast message="deleted!" />} */}
       <div className="flex justify-between w-[864px] mx-auto py-2">
         <div>Welcome {name}</div>
         <button
@@ -114,7 +116,7 @@ const UsersTable = () => {
         </button>
         {modal && (
           <AddModal
-            toastSuccess={() => setToast(true)}
+            toastSuccess={() => setToastAdd(true)}
             closeModal={() => setModal(false)}
           />
         )}

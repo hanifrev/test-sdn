@@ -73,7 +73,7 @@ const EditModal = ({
   }
 
   return (
-    <div id="add-form" className="text-white absolute" ref={modalRef}>
+    <div id="edit-form" className="text-white absolute" ref={modalRef}>
       {isLoading ? (
         <div className="font-bold h-[400px] flex justify-center items-center">
           <span className="loading loading-bars loading-lg"></span>
@@ -87,7 +87,7 @@ const EditModal = ({
             </label>
             <input
               type="text"
-              id="title"
+              id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
@@ -98,7 +98,7 @@ const EditModal = ({
             </label>
             <input
               type="email"
-              id="description"
+              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="input input-bordered input-primary w-full max-w-xs"
