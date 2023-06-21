@@ -5,9 +5,6 @@ import {
   BaseQueryFn,
 } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
-import jwtDecode from "jwt-decode";
-import { useRouter } from "next/router";
-import next from "next/types";
 
 interface TheUsers {
   _id: any;
@@ -15,8 +12,6 @@ interface TheUsers {
   email: string;
   role: string;
 }
-
-// const router = useRouter();
 
 export const apiUsers = createApi({
   reducerPath: "apiUsers",
@@ -63,9 +58,9 @@ export const apiUsers = createApi({
       invalidatesTags: ["crud"],
     }),
     updateUsers: builder.mutation({
-      query: (data: any) => ({
-        url: `/users/${data._id}`,
-        method: "PUT",
+      query: (data) => ({
+        url: `/users`,
+        method: "PATCH",
         body: data,
       }),
       invalidatesTags: ["crud"],

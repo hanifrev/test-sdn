@@ -20,9 +20,7 @@ const EditModal = ({
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("Loading...");
   const [email, setEmail] = useState<string>("Loading...");
-  const [role, setRole] = useState<string>("Loading...");
-  //   const [title, setTitle] = useState<string>("Loading...");
-  //   const [description, setDescription] = useState<string>("Loading...");
+  const [roleId, setRoleId] = useState<string>("Loading...");
 
   const { data: oneData, refetch } = useGetOneUsersQuery(idParams);
   console.log(oneData && oneData);
@@ -32,8 +30,11 @@ const EditModal = ({
       setId(oneData.data._id);
       setName(oneData.data.name);
       setEmail(oneData.data.email);
+      setRoleId(oneData.data.role._id);
     }
   }, [oneData, idParams]);
+
+  console.log(id);
 
   useEffect(() => {
     refetch();
@@ -59,7 +60,7 @@ const EditModal = ({
 
   const handleUpdate = (e: any) => {
     e.preventDefault();
-    updateUsers({ id, name, email });
+    updateUsers({ id, name, email, roleId });
     e.target.reset();
   };
 
@@ -103,10 +104,34 @@ const EditModal = ({
               className="input input-bordered input-primary w-full max-w-xs"
             />
             <label className="label">
-              <span className="label-text">Pick the date</span>
+              <span className="label-text">Select Role</span>
             </label>
+            <select
+              className="select select-primary w-full max-w-xs"
+              value={roleId}
+              onChange={(e) => setRoleId(e.target.value)}
+            >
+              <option disabled selected>
+                Select Rolo Here
+              </option>
+              <option
+                value="648c4a358f6c1f606c750c1c"
+                selected={roleId === "648c4a358f6c1f606c750c1c"}
+              >
+                Admin
+              </option>
+              <option
+                value="648c4a358f6c1f606c750c1d"
+                selected={roleId === "648c4a358f6c1f606c750c1d"}
+              >
+                User
+              </option>
+            </select>
 
-            <button className="btn btn-primary px-16 w-full " type="submit">
+            <button
+              className="btn btn-primary mt-8 px-16 w-full "
+              type="submit"
+            >
               EDIT
             </button>
           </div>
