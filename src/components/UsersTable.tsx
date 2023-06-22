@@ -20,7 +20,7 @@ const UsersTable = () => {
   const [idEdit, setIdEdit] = useState<string>();
   const [toast, setToast] = useState<boolean>(false);
   const [toastAdd, setToastAdd] = useState<boolean>(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
   const { name, email } = useSelector((state: RootState) => state.userInfo);
 
   function sliceString(str: string, maxLength: number): string {
@@ -37,21 +37,19 @@ const UsersTable = () => {
 
   const router = useRouter();
 
-  const getData: any = useGetAllUsersQuery(page);
-  const thedata = getData.data && getData.data.data.docs;
-  const data = thedata;
+  const { data, error } = useGetAllUsersQuery(page);
+  const theData = data && data.data.docs;
 
   const username = Cookies.get("username");
 
-  // useEffect(() => {
-  //   if (getData.error.status == 401 && getData.error.status == 401) {
-  //     Cookies.remove("access_token");
-  //     router.push("/Login");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (error && error.status == 401) {
+      Cookies.remove("access_token");
+      router.push("/Login");
+    }
+  }, []);
 
-  const [deleteUsers, { isLoading, isSuccess, isError }] =
-    useDeleteUsersMutation();
+  const [deleteUsers, { isLoading, isSuccess }] = useDeleteUsersMutation();
 
   useEffect(() => {
     if (toast || toastAdd) {
@@ -65,18 +63,6 @@ const UsersTable = () => {
       };
     }
   }, [toast, toastAdd]);
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     const timer = setTimeout(() => {
-  //       isSuccess;
-  //     }, 2000);
-
-  //     return () => {
-  //       clearTimeout(timer);
-  //     };
-  //   }
-  // }, [isSuccess]);
 
   const handleDelete = (e: any, id: string) => {
     e.preventDefault();
@@ -139,8 +125,8 @@ const UsersTable = () => {
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.map((x: any, index: string) => {
+            {theData &&
+              theData.map((x: any, index: string) => {
                 return (
                   <tr
                     className="flex flex-row items-center text-sm table-head"

@@ -26,7 +26,6 @@ const EditModal = ({
   const [roleId, setRoleId] = useState<string>("Loading...");
 
   const { data: oneData, refetch } = useGetOneUsersQuery(idParams);
-  // console.log(oneData && oneData);
 
   useEffect(() => {
     if (oneData) {
@@ -38,8 +37,6 @@ const EditModal = ({
       setRoleId(oneData.data.role._id);
     }
   }, [oneData, idParams]);
-
-  // console.log(id);
 
   useEffect(() => {
     refetch();
